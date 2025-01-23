@@ -25,7 +25,9 @@ class Solution {
             }
         }
         
-        list.sort((o1, o2) -> Integer.compare(o1[sortIdx], o2[sortIdx]));
+        // list.sort((o1, o2) -> Integer.compare(o1[sortIdx], o2[sortIdx]));
+        
+        list.sort((o1,o2) -> o1[sortIdx] - o2[sortIdx]);
         
         int[][] answer = new int[list.size()][4];
         for(int i=0; i<list.size(); i++){
