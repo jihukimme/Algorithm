@@ -16,11 +16,13 @@ class Solution {
             list.add(my_str.substring(i,e));
         }
         
-        answer = new String[list.size()];
+        answer = list.toArray(new String[0]);
+            
+//             new String[list.size()];
         
-        for(int i=0; i<list.size(); i++){
-            answer[i] = list.get(i);
-        }
+//         for(int i=0; i<list.size(); i++){
+//             answer[i] = list.get(i);
+//         }
         
         return answer;
     }
