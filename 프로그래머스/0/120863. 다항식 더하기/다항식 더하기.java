@@ -21,7 +21,7 @@ class Solution {
         }
         
         if (resultX == 0 && result == 0) return "0";
-        if (resultX == 0) return String.valueOf(result);
+        if (resultX == 0) return Integer.toString(result);
         if (result == 0) return resultX == 1 ? "x" : resultX + "x";
         return (resultX == 1 ? "x" : resultX + "x") + " + " + result;
     }
