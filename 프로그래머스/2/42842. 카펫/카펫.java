@@ -7,7 +7,7 @@ class Solution {
         int row = 0;
         int col = 0;
         
-//         size == row*col;
+        // size == row*col;
                 
         
         while(size != row*col){
