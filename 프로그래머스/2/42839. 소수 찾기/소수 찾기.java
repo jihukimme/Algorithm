@@ -3,17 +3,14 @@ import java.util.*;
 class Solution {
     
     HashSet<Integer> set = new HashSet<>();
+    boolean[] visited = new boolean[7];
     
     public int solution(String numbers) {
         
         int answer = 0;
         
-        boolean[] visited = new boolean[numbers.length()];
-
-        dfs(0, numbers, visited, "");
-        
-        // dfs(0, numbers, "");
-        
+        dfs(0, numbers, "");
+                
         for(int n : set){
             if(isPrime(n)){
                 answer++;
@@ -23,44 +20,23 @@ class Solution {
         return answer;
     }
     
-    public void dfs(int depth, String numbers, boolean[] visited, String s){
-        if(depth>=numbers.length()){
+    
+    public void dfs(int depth, String numbers, String s){
+        if(depth > numbers.length()){
             return;
         }
         
         for(int i=0; i<numbers.length(); i++){
             if(!visited[i]){
                 visited[i] = true;
-                set.add(Integer.parseInt(s + numbers.charAt(i)));
-                // System.out.println(set);
-                dfs(depth+1,numbers,visited, s + numbers.charAt(i));
-                visited[i] = false;
+                set.add(Integer.parseInt(s+numbers.charAt(i)));
+                dfs(depth+1, numbers, s+numbers.charAt(i));
+                visited[i]=false;
             }
-            // System.out.println(set);
+
         }
-        
     }
     
-        
-        
-        
-        
-    
-//     public void dfs(int depth, String numbers, String s){
-//         if(depth > numbers.length()){
-//             return;
-//         }
-        
-//         for(int i=0; i<numbers.length(); i++){
-//             if(!visited[i]){
-//                 visited[i] = true;
-//                 set.add(Integer.parseInt(s+numbers.charAt(i)));
-//                 dfs(depth+1, numbers, s+numbers.charAt(i));
-//                 visited[i]=false;
-//             }
-
-//         }
-//     }
     
     public boolean isPrime(int number){
         if(number < 2)
