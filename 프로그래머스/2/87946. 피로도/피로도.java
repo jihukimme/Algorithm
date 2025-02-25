@@ -6,39 +6,31 @@ class Solution {
     boolean[] visited;
     
     public int solution(int k, int[][] dungeons) {
-
-        int n = dungeons.length;
         
         countList = new ArrayList<>();
-        visited = new boolean[n];
+        visited = new boolean[dungeons.length];
         
-        dfs(0, k, dungeons, 0);
+        dfs(0, visited, k, dungeons, 0);
         
-        int maxCount = 0;
-        for(int count : countList){
-            if(maxCount<count){
-                maxCount = count;
-            }
-        }
+        countList.sort(Collections.reverseOrder());
+        
+        int maxCount = countList.get(0);
         
         return maxCount;
     }
     
-    public void dfs(int depth, int k, int[][] dungeons, int count){
+    public void dfs(int depth, boolean[] visited, int k, int[][] dungeons, int count){
         if(depth>=dungeons.length){
             return;
         }
         
         for(int i=0; i<dungeons.length; i++){
-            if(!visited[i] && k>=dungeons[i][0]){
+            if(!visited[i] && dungeons[i][0]<=k){
                 visited[i] = true;
-                // k-=dungeons[i][1];
-                // count++;
                 countList.add(count+1);
-                dfs(depth+1, k-dungeons[i][1], dungeons, count+1);
+                dfs(depth+1, visited, k-dungeons[i][1], dungeons, count+1);
                 visited[i] = false;
             }
-            // System.out.println(countList);
         }
     }
     
