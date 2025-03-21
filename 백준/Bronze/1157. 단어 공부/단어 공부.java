@@ -1,45 +1,47 @@
-import java.io.*;
-
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
-        // 대소문자 단어 -> 가장 많이 사용된 알파벳 알아내기(대문자와 소문자를 구분하지 않는다.)
-        // 대문자 아스키코드 + 32 = 소문자 아스키코드
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-//        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        String s = br.readLine();
 
-        char[] val= br.readLine().toLowerCase().toCharArray();
+        // 입력 받은 문자열을 모두 대문자로 바꾼다.
+        // 사용된 알파벳의 개수를 센다.
+        // 알파벳 개수는 .. 알파벳 개수만큼의 1차원 정수 배열을 만들어서 체크하는게 빠르겠다..
 
-        StringBuilder sb = new StringBuilder();
+        s = s.toUpperCase();
 
-
-        // a b c d e f g
-        // 0 1 2 3 4 5 6
-        // 'a' - 'a'
         int[] count = new int[26];
-        for(int i = 0; i < val.length; i++){
-            count[val[i] - 'a']++;
-        }
+        int maxIndex = 0;
 
-        int max = 0;
-        char answer = '?';
+        for(int i=0; i<s.length(); i++){
+            int c = s.charAt(i) - 'A';
+
+            count[c]++;
+        }
 
         for(int i=0; i<count.length; i++){
-           if(max<count[i]) {
-               max = count[i];
-               answer = (char)(i + 'A');
-           }
-           else if(max == count[i])
-               answer = '?';
+            if(count[i]>count[maxIndex]){
+                maxIndex = i;
+            }
         }
 
-        sb.append(answer);
-        System.out.println(sb);
+        int maxCount = 0;
+        for(int i=0; i<count.length; i++){
+            if(count[i]==count[maxIndex]){
+                maxCount++;
+            }
+        }
 
+        if(maxCount>=2){
+            System.out.println("?");
+        }
+        else {
+            System.out.println((char)(maxIndex+'A'));
+        }
 
     }
 }
