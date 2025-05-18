@@ -61,7 +61,6 @@ class Solution {
     
     void dfs(int depth, int k, int[][] dungeons, int count){
         if(depth>dungeons.length) {
-            // list.add(count+1);
             return;
         }
         
