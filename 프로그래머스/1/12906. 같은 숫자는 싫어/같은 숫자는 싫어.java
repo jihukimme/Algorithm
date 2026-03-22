@@ -13,17 +13,16 @@ public class Solution {
             if(arr[i-1] == arr[i]){
                 continue;
             }
-            else{
+            else {
                 list.add(arr[i]);
             }
         }
         
         answer = new int[list.size()];
-       
+        
         for(int i=0; i<list.size(); i++){
             answer[i] = list.get(i);
         }
-        
         
         return answer;
     }
