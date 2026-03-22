@@ -1,53 +1,67 @@
+// import java.util.*;
+
+// class Solution {
+    
+//     char[] charArr = {'A', 'E', 'I', 'O', 'U'};
+//     ArrayList<String> list = new ArrayList<>();
+    
+//     public int solution(String word) {
+//         dfs(0, "");
+        
+//         int count = 0;
+//         for(String s : list){
+//             count++;
+            
+//             if(s.equals(word)){
+//                 return count;
+//             }
+//         }
+        
+//         return count; 
+//     }
+    
+    
+//     public void dfs(int depth, String s){
+//         if(depth==charArr.length) {
+//             return;
+//         }
+        
+//         for(int i=0; i<charArr.length; i++){
+//             list.add(s+charArr[i]);
+//             dfs(depth+1, s+charArr[i]);
+//         }
+//     }
+// }
+
+
 import java.util.*;
 
 class Solution {
     
-    ArrayList<String> list;
-    // boolean[] visited;
+    char[] charArr = {'A', 'E', 'I', 'O', 'U'};
+    ArrayList<String> list = new ArrayList<>();
     
     public int solution(String word) {
+        dfs(0, "");
         
-        String[] aeiou = {"A", "E", "I", "O", "U"};
-        list = new ArrayList<>();
-        
-        // int n = aeiou.length;
-        // visited = new boolean[n];
-        
-        dfs(0, aeiou, "");
-        
-        int count = 0;
-        for(String s : list){
-            if(s.equals(word)){
-                System.out.println(s);
-                return count+1;
-            }
-            else{
-                count++;
+        for(int i=0; i<list.size(); i++){
+            if(list.get(i).equals(word)){
+                return i+1;
             }
         }
         
         return 0;
     }
     
-    
-    public void dfs(int depth, String[] aeiou, String s){
-        if(depth>=aeiou.length){
+    public void dfs(int depth, String s){
+        if(depth >= charArr.length){
             return;
         }
         
-        for(int i=0; i<aeiou.length; i++){
-            // if(!visited[i]){
-            //     visited[i] = true;
-            //     list.add(s+aeiou[i]);
-            //     dfs(depth+1, aeiou, s+aeiou[i]);
-            //     visited[i] = false;
-            // }
-            
-            list.add(s+aeiou[i]);
-            dfs(depth+1, aeiou, s+aeiou[i]);
+        for(int i=0; i<charArr.length; i++){
+            list.add(s+charArr[i]);
+            dfs(depth+1, s+charArr[i]);
         }
-        
     }
-    
     
 }
