@@ -6,26 +6,26 @@ class Solution {
         
         int[] answer = new int[commands.length];
         
-        for(int x=0; x<commands.length; x++){
-            int i=commands[x][0];
-            int j=commands[x][1];
-            int k=commands[x][2];
+        for(int n=0; n<commands.length; n++){
+            int i = commands[n][0];
+            int j = commands[n][1];
+            int k = commands[n][2];
             
-            int[] arr = new int[j-i+1];
+            int size = j-i+1;
             
+            int[] arr = new int[size];
             int idx = 0;
-            for(int n=i-1; n<j; n++){
-                arr[idx]=array[n];
+            
+            for(int m=i-1; m<=j-1; m++){
+                arr[idx] = array[m];
                 idx++;
             }
             
             Arrays.sort(arr);
-            
-            answer[x] = arr[k-1];
+            answer[n] = arr[k-1];
         }
         
         return answer;
-        
         
         
 //         int[] answer = new int[commands.length];
