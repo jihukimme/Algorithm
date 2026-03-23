@@ -1,54 +1,105 @@
+// import java.util.*;
+
+// class Solution {
+    
+//     HashSet<Integer> set = new HashSet<>();
+//     boolean[] isVisited;
+    
+//     public int solution(String numbers) {
+//         isVisited = new boolean[numbers.length()];
+        
+//         dfs(0, numbers, "");
+        
+//         int count = 0;
+//         for(int number : set){
+//             if(isPrime(number)){
+//                 count++;
+//             }
+//         }
+        
+//         return count;
+//     }
+    
+//     public void dfs(int depth, String numbers, String s){
+//         if(depth > numbers.length()){
+//             return;
+//         }
+        
+//         for(int i=0; i<numbers.length(); i++){
+//             if(!isVisited[i]){
+//                 isVisited[i] = true;
+//                 set.add(Integer.parseInt(s + numbers.charAt(i)));
+//                 dfs(depth+1, numbers, s + numbers.charAt(i));
+//                 isVisited[i] = false;
+//             }
+//         }
+//     }
+    
+//     public boolean isPrime(int number){
+//         if(number < 2)
+//             return false;
+        
+//         for(int i=2; i<number; i++){
+//             if(number%i==0){
+//                 return false;
+//             }
+//         }
+       
+//         return true;
+//     }
+    
+// }
+
+
 import java.util.*;
 
 class Solution {
     
     HashSet<Integer> set = new HashSet<>();
-    boolean[] visited = new boolean[7];
+    boolean[] isVisited;
     
     public int solution(String numbers) {
-        
-        int answer = 0;
+        isVisited = new boolean[numbers.length()];
         
         dfs(0, numbers, "");
-                
-        for(int n : set){
+        
+        int count = 0;
+        
+        for(int n:set){
             if(isPrime(n)){
-                answer++;
+                count++;
             }
         }
         
-        return answer;
+        return count;
     }
     
-    
     public void dfs(int depth, String numbers, String s){
-        if(depth > numbers.length()){
+        if(depth == numbers.length()){
             return;
         }
         
         for(int i=0; i<numbers.length(); i++){
-            if(!visited[i]){
-                visited[i] = true;
+            if(!isVisited[i]){
+                isVisited[i]=true;
                 set.add(Integer.parseInt(s+numbers.charAt(i)));
                 dfs(depth+1, numbers, s+numbers.charAt(i));
-                visited[i]=false;
+                isVisited[i]=false;
             }
-
         }
     }
     
-    
-    public boolean isPrime(int number){
-        if(number < 2)
+    public boolean isPrime(int number) {
+        if(number<2){
             return false;
-        
-        for(int i=2; i<number; i++){
-            if(number%i==0){
-                return false;
+        }
+        else{
+            for(int i=2;i<number;i++){
+                if(number%i==0){
+                    return false;
+                }
             }
         }
-       
         return true;
     }
-    
 }
